@@ -58,7 +58,7 @@ SKILLUPPLUS2030/
 
 ### LoginScreen:
 
-![Tela de Login](./assets/prints/LoginScreen.jpg)
+<img src="./assets/prints/LoginScreen.jpg" width="300" alt="Tela de Login">
 
 #### 🔐 Autenticação
 - Utiliza **Firebase Authentication** para login de usuários
