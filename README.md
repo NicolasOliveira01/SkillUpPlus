@@ -79,23 +79,55 @@ SKILLUPPLUS2030/
 - Feedback visual com mensagens de erro/sucesso
 - Redirecionamento para RegisterScreen quando o usuário clicar no botão **Criar conta**
 
-### RegisterScreen:
+### RegisterScreen - Tela de Cadastro
 
-<img src="./assets/prints/RegisterScreen.jpg" height="450" alt="dados cadastrais">
+<img src="./assets/prints/RegisterScreen.jpg" height="450" alt="Tela de Cadastro - Dados Cadastrais">
 
- - Usuário preenche os campos **Nome Completo**, **Email**, **Senha**, **Confirmar senha**, **Área de Interesse** e **Nível**
+#### 📝 Formulário de Cadastro
+O usuário preenche todos os campos obrigatórios para criar sua conta:
+- **Nome Completo** - Identificação pessoal
+- **Email** - Para login e comunicação
+- **Senha** - Mínimo de 6 caracteres
+- **Confirmar Senha** - Validação de segurança
+- **Área de Interesse** - Definição do foco de aprendizado
+- **Nível** - Autoavaliação de competências
 
-#### Área de Interesse: 
+---
 
- - **IA**, **Sustentabilidade**, **Soft Skills**, **Gestão**, **Análise de Dados** e **Tecnologia da Informação**
+#### 🎯 Área de Interesse
+O usuário seleciona entre 6 áreas emergentes do mercado:
 
-<img src="./assets/prints/area_interesse.jpg" alt="pickers">
+<img src="./assets/prints/area_interesse.jpg" height="300" alt="Picker de Áreas de Interesse">
 
-#### Nível
+| Área | Foco Principal | Emoji |
+|------|----------------|--------|
+| **IA** | Machine Learning, ChatGPT | 🤖 |
+| **Sustentabilidade** | ESG, Energia Renovável, Economia Verde | 🌱 |
+| **Soft Skills** | Comunicação, Liderança, Trabalho em Equipe | 💬 |
+| **Gestão** | Gestão de Projetos, Liderança | 📊 |
+| **Análise de Dados** | Data Science, BI, Analytics | 📈 |
+| **Tecnologia da Informação** | Sistemas, Infraestrutura, Segurança | 💻 |
 
- - **Iniciante**, **Intermediário**, **Avançado**
+---
 
-<img src="./assets/prints/nivel.jpg" alt="pickers">
+#### 📊 Nível de Conhecimento
+Autoavaliação do usuário na área escolhida:
+
+<img src="./assets/prints/nivel.jpg" height="250" alt="Picker de Níveis">
+
+| Nível | Descrição | Emoji |
+|-------|------------|--------|
+| **Iniciante** | Conhecimentos básicos, começando na área | 🚀 |
+| **Intermediário** | Experiência prática, buscando aprofundamento | 📈 |
+| **Avançado** | Domínio técnico, busca especialização | 💎 |
+
+---
+
+#### 🔄 Fluxo de Cadastro
+1. **Preenchimento** dos dados pessoais e profissionais
+2. **Validação** em tempo real dos campos
+3. **Persistência** no Firebase Authentication e Realtime Database
+4. **Redirecionamento** para tela de Login após sucesso
 
 ### HomeScreen:
 
