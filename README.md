@@ -64,7 +64,7 @@ SKILLUPPLUS2030/
 
 ### LoginScreen:
 
-<img src="./assets/prints/LoginScreen.jpg" height="350" alt="Tela de Login">
+<img src="./assets/prints/LoginScreen.jpg" height="450" alt="Tela de Login">
 
 #### 🔐 Autenticação:
 - Utiliza **Firebase Authentication** (auth().signInWithEmailAndPassword) para login de usuários
@@ -81,9 +81,7 @@ SKILLUPPLUS2030/
 
 ### RegisterScreen:
 
-<img src="./assets/prints/dados_cadastrais_register.jpg" alt="dados cadastrais">
-
-<img src="./assets/prints/picker_register.jpg" alt="pickers">
+<img src="./assets/prints/RegisterScreen.jpg" height="450" alt="dados cadastrais">
 
  - Usuário preenche os campos **Nome Completo**, **Email**, **Senha**, **Confirmar senha**, **Área de Interesse** e **Nível**
 
