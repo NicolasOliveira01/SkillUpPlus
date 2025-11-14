@@ -79,6 +79,8 @@ SKILLUPPLUS2030/
 - Feedback visual com mensagens de erro/sucesso
 - Redirecionamento para RegisterScreen quando o usuário clicar no botão **Criar conta**
 
+---
+
 ### RegisterScreen - Tela de Cadastro
 
 <img src="./assets/prints/RegisterScreen.jpg" height="450" alt="Tela de Cadastro - Dados Cadastrais">
@@ -92,22 +94,16 @@ O usuário preenche todos os campos obrigatórios para criar sua conta:
 - **Área de Interesse** - Definição do foco de aprendizado
 - **Nível** - Autoavaliação de competências
 
----
-
 #### 🎯 Área de Interesse
 O usuário seleciona entre 6 áreas emergentes do mercado:
 
 <img src="./assets/prints/area_interesse.jpg" height="300" alt="Picker de Áreas de Interesse">
-
----
 
 #### 📊 Nível de Conhecimento
 
 Autoavaliação do usuário na área escolhida:
 
 <img src="./assets/prints/nivel.jpg" height="250" alt="Picker de Níveis">
-
----
 
 #### 🔄 Fluxo de Cadastro
 1. **Preenchimento** dos dados pessoais e profissionais
