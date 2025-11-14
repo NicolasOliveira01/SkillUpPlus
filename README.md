@@ -99,27 +99,13 @@ O usuário seleciona entre 6 áreas emergentes do mercado:
 
 <img src="./assets/prints/area_interesse.jpg" height="300" alt="Picker de Áreas de Interesse">
 
-| Área | Foco Principal | Emoji |
-|------|----------------|--------|
-| **IA** | Machine Learning, ChatGPT | 🤖 |
-| **Sustentabilidade** | ESG, Energia Renovável, Economia Verde | 🌱 |
-| **Soft Skills** | Comunicação, Liderança, Trabalho em Equipe | 💬 |
-| **Gestão** | Gestão de Projetos, Liderança | 📊 |
-| **Análise de Dados** | Data Science, BI, Analytics | 📈 |
-| **Tecnologia da Informação** | Sistemas, Infraestrutura, Segurança | 💻 |
-
 ---
 
 #### 📊 Nível de Conhecimento
+
 Autoavaliação do usuário na área escolhida:
 
 <img src="./assets/prints/nivel.jpg" height="250" alt="Picker de Níveis">
-
-| Nível | Descrição | Emoji |
-|-------|------------|--------|
-| **Iniciante** | Conhecimentos básicos, começando na área | 🚀 |
-| **Intermediário** | Experiência prática, buscando aprofundamento | 📈 |
-| **Avançado** | Domínio técnico, busca especialização | 💎 |
 
 ---
 
