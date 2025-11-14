@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import { showAlert } from '../config/utils';
 import { COLORS } from '../config/colors';
+import { Picker } from '@react-native-picker/picker';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,10 +22,12 @@ export default function RegisterScreen({ navigation }: Props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [areaInteresse, setAreaInteresse] = useState('');
+  const [nivelArea, setNivelArea] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
-    if (!nome || !email || !senha || !confirmarSenha ) {
+    if (!nome || !email || !senha || !confirmarSenha || !areaInteresse || !nivelArea) {
       showAlert('Preencha todos os campos obrigatórios!', 'error');
       return;
     }
@@ -53,6 +56,8 @@ export default function RegisterScreen({ navigation }: Props) {
       await database().ref(`/users/${userId}`).set({
         nome,
         email,
+        areaInteresse,
+        nivelArea,
         criadoEm: new Date().toISOString(),
       });
 
@@ -78,6 +83,8 @@ export default function RegisterScreen({ navigation }: Props) {
     >
       <Text style={styles.title}>Criar Conta</Text>
       <Text style={styles.subtitle}>Junte-se ao SkillUpPlus 2030+</Text>
+
+      <Text style={[styles.subtitle2, {fontSize: 20}]}>Dados Cadastrais: </Text>
 
       {/* Dados Pessoais */}
       <TextInput
@@ -111,7 +118,7 @@ export default function RegisterScreen({ navigation }: Props) {
       />
 
       <TextInput
-        style={styles.input}
+        style={[styles.input, { marginBottom: 20 }]}
         placeholder="Confirmar Senha"
         placeholderTextColor={COLORS.GRAY_400}
         value={confirmarSenha}
@@ -119,6 +126,47 @@ export default function RegisterScreen({ navigation }: Props) {
         secureTextEntry
         editable={!loading}
       />
+
+      <Text style={[styles.subtitle2, {fontSize: 20}]}>Área de Interesse: </Text>
+
+      {/* Picker Área de Interesse */}
+      <View style={styles.pickerContainer}>
+        <View style={styles.picker}>
+          <Picker
+            selectedValue={areaInteresse}
+            onValueChange={setAreaInteresse}
+            enabled={!loading}
+            style={styles.pickerText}
+          >
+            <Picker.Item label="Selecione sua área de interesse" value="" />
+            <Picker.Item label="🤖 IA (Machine Learning, ChatGPT)" value="IA" />
+            <Picker.Item label="🌱 Sustentabilidade (ESG, Energia Renovável)" value="Sustentabilidade" />
+            <Picker.Item label="💬 Soft Skills (Comunicação, Liderança)" value="Soft Skills" />
+            <Picker.Item label="📊 Gestão (Gestão de Projetos, Liderança)" value="Gestao" />
+            <Picker.Item label="📈 Análise de Dados (Data Science, BI)" value="Analise de Dados" />
+            <Picker.Item label="💻 Tecnologia da Informação" value="TI" />
+          </Picker>
+        </View>
+      </View>
+
+      <Text style={[styles.subtitle2, {fontSize: 20, marginTop: 10}]}>Nível na área escolhida: </Text>
+
+      {/* Picker Nível */}
+      <View style={[styles.pickerContainer, {marginBottom: 40}]}>
+        <View style={styles.picker}>
+          <Picker
+            selectedValue={nivelArea}
+            onValueChange={setNivelArea}
+            enabled={!loading}
+            style={styles.pickerText}
+          >
+            <Picker.Item label="Selecione seu nível" value="" />
+            <Picker.Item label="🚀 Iniciante" value="iniciante" />
+            <Picker.Item label="📈 Intermediário" value="intermediario" />
+            <Picker.Item label="💎 Avançado" value="avancado" />
+          </Picker>
+        </View>
+      </View>
 
       {/* Botão Cadastrar */}
       <TouchableOpacity
@@ -141,6 +189,7 @@ export default function RegisterScreen({ navigation }: Props) {
       >
         <Text style={styles.buttonSecondaryText}>Voltar ao Login</Text>
       </TouchableOpacity>
+
     </ScrollView>
   );
 }
@@ -165,6 +214,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     textAlign: 'center',
   },
+  subtitle2:{
+    fontSize: 18,
+    color: COLORS.PRIMARY,
+    marginBottom: 15,
+    fontWeight: '600',
+  },
   input: {
     width: '100%',
     height: 50,
@@ -172,7 +227,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.BORDER,
     borderRadius: 10,
     paddingHorizontal: 15,
-    marginBottom: 15,
+    marginBottom: 18,
     color: COLORS.TEXT_PRIMARY,
     backgroundColor: COLORS.SURFACE,
     fontSize: 16,
@@ -180,13 +235,6 @@ const styles = StyleSheet.create({
   pickerContainer: {
     width: '100%',
     marginBottom: 15,
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: COLORS.TEXT_SECONDARY,
-    marginBottom: 8,
-    marginLeft: 4,
   },
   picker: {
     width: '100%',
