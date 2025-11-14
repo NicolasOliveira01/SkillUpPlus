@@ -108,8 +108,19 @@ Autoavaliação do usuário na área escolhida:
 #### 🔄 Fluxo de Cadastro
 1. **Preenchimento** dos dados pessoais e profissionais
 2. **Validação** em tempo real dos campos
-3. **Persistência** no Firebase Authentication e Realtime Database
-4. **Redirecionamento** para tela de Login após sucesso
+3. **Persistência** no Firebase Authentication (auth().createUserWithEmailAndPassword)
+4. **Persistência** no Realtime Database (database().ref(`/users/${userId}`).set)
+5. **Redirecionamento** para tela de Login após sucesso
+
+```bash
+await database().ref(`/users/${userId}`).set({
+        nome,
+        email,
+        areaInteresse,
+        nivelArea,
+        criadoEm: new Date().toISOString(),
+      });
+```
 
 ### HomeScreen:
 
