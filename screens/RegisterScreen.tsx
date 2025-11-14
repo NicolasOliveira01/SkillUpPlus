@@ -27,12 +27,12 @@ export default function RegisterScreen({ navigation }: Props) {
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
-    if (!nome || !email || !senha || !confirmarSenha || !areaInteresse || !nivelArea) {
-      showAlert('Preencha todos os campos obrigatórios!', 'error');
-      return;
-    }
+  if (!nome || !email || !senha || !confirmarSenha || !areaInteresse || !nivelArea) {
+    showAlert('Preencha todos os campos obrigatórios!', 'error');
+    return;
+  }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       showAlert('Email inválido!', 'error');
       return;
@@ -62,7 +62,17 @@ export default function RegisterScreen({ navigation }: Props) {
       });
 
       showAlert('Conta criada com sucesso!', 'success');
-      navigation.navigate('Login');
+      
+      // ✅ CORREÇÃO: VAI DIRETO PARA CONTENT
+      navigation.navigate('Content', {
+        userData: {
+          nome,
+          email,
+          areaInteresse,
+          nivelArea
+        }
+      });
+      
     } catch (error: any) {
       console.log(error);
       if (error.code === 'auth/email-already-in-use') {

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigation';
-import firebaseApp from '../config/firebaseConfig';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database'; // ← ADICIONAR ESTA LINHA
 import { showAlert } from '../config/utils';
 import { COLORS } from '../config/colors';
 
@@ -41,19 +41,38 @@ export default function LoginScreen({ navigation }: Props) {
     setLoading(true);
     try {
       const userCredential = await auth().signInWithEmailAndPassword(email, senha);
-      console.log('Usuário logado:', userCredential.user.uid);
+      const userId = userCredential.user.uid;
+      
+      console.log('Usuário logado:', userId);
+      
+      // ✅ BUSCAR DADOS DO USUÁRIO NO FIREBASE
+      const userSnapshot = await database().ref(`/users/${userId}`).once('value');
+      const userData = userSnapshot.val();
+      
+      console.log('Dados do usuário:', userData);
+      
       showAlert('Login realizado com sucesso!', 'success');
-      navigation.navigate('Home');
+      
+      // ✅ NAVEGAR PARA CONTENT COM OS DADOS DO FIREBASE
+      navigation.navigate('Content', {
+        userData: {
+          nome: userData.nome,
+          email: userData.email,
+          areaInteresse: userData.areaInteresse,
+          nivelArea: userData.nivelArea
+        }
+      });
+      
     } catch (error: any) {
       console.log(error);
-      showAlert('Email/senha errados', 'error');
+      showAlert('Email/senha incorretos!', 'error');
     } finally {
       setLoading(false);
     }
   };
 
   const handleRegister = () => {
-    navigation.navigate('Register');
+    navigation.navigate('Register'); // ← CORRIGIDO: deve ir para Register, não Content
   };
 
   return (

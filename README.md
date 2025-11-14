@@ -39,16 +39,22 @@ npx expo start -c
 
 ```
 SKILLUPPLUS2030/
+│
 ├── config/
 │   ├── colors.ts
-│   ├── firebaseConfig.ts
 │   └── utils.ts
+│
 ├── navigation/
 │   └── AppNavigation.tsx
+│
 ├── screens/
-│   ├── HomeScreen.tsx
+│   ├── ContentScreen.tsx
 │   ├── LoginScreen.tsx
 │   └── RegisterScreen.tsx
+│
+├── services/
+│    └──
+│
 ├── App.tsx
 ├── google-service.json
 └── index.ts
@@ -75,7 +81,7 @@ SKILLUPPLUS2030/
 #### 🔄 Fluxo de Login:
 - Validação dos campos de entrada
 - Autenticação com **Firebase Auth**
-- Redirecionamento para Home em caso de sucesso
+- Redirecionamento para Content em caso de sucesso
 - Feedback visual com mensagens de erro/sucesso
 - Redirecionamento para RegisterScreen quando o usuário clicar no botão **Criar conta**
 
@@ -122,7 +128,7 @@ await database().ref(`/users/${userId}`).set({
       });
 ```
 
-### HomeScreen:
+## ContentScreen:
 
 ## Alerts do projeto:
 
@@ -170,6 +176,7 @@ npx expo install @react-navigation/native-stack
 
 ```bash
 npm install axios
+npm install @google/generative-ai
 ```
 
 ### Toast
