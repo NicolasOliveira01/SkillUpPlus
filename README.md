@@ -72,7 +72,7 @@ SKILLUPPLUS2030/
 
 <img src="./assets/prints/auth.jpg" alt="Authentication_firebase">
 
-#### 🎯 Fluxo de Login:
+#### 🔄 Fluxo de Login:
 - Validação dos campos de entrada
 - Autenticação com **Firebase Auth**
 - Redirecionamento para Home em caso de sucesso
@@ -125,6 +125,26 @@ await database().ref(`/users/${userId}`).set({
 ### HomeScreen:
 
 ## Alerts do projeto:
+
+### Alerts de erro:
+
+<img src="./assets/prints/colocar_todos_campos.jpg" alt="Authentication_firebase">
+
+<img src="./assets/prints/email_invalido.jpg" alt="Authentication_firebase">
+
+<img src="./assets/prints/senha_diferente.jpg" alt="Authentication_firebase">
+
+<img src="./assets/prints/senha_email_errado.jpg" alt="Authentication_firebase">
+
+<img src="./assets/prints/senha_menor_6.jpg" alt="Authentication_firebase">
+
+<img src="./assets/prints/email_ja_usado.jpg" alt="Authentication_firebase">
+
+### Alerts que deram certo
+
+<img src="./assets/prints/conta_criada.jpg" alt="Authentication_firebase">
+
+<img src="./assets/prints/login_sucesso.jpg" alt="Authentication_firebase">
 
 ## Dependências instaladas 
 
