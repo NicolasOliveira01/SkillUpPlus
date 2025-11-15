@@ -1,4 +1,4 @@
-// CoursesScreen.tsx - COMPLETA
+// CoursesScreen.tsx - COM BARRA DE PROGRESSO
 import React, { useState, useEffect } from 'react';
 import { 
   View, 
@@ -13,7 +13,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigation';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
-import { generateLearningContent } from '../services/aiService';
 import { showAlert } from '../config/utils';
 import { COLORS } from '../config/colors';
 
@@ -64,6 +63,16 @@ export default function CoursesScreen({ navigation }: Props) {
     'intermediario': '📈 Intermediário',
     'avancado': '💎 Avançado'
   };
+
+  // Constantes para progresso
+  const TOTAL_CURSOS = 15; // 6 áreas × 3 níveis
+
+  // Calcular progresso
+  const cursosConcluidos = Object.values(cursos).filter(
+    curso => curso.concluido === true
+  ).length;
+
+  const porcentagemConcluida = (cursosConcluidos / TOTAL_CURSOS) * 100;
 
   const navegarParaConteudoCurso = (courseId: string, curso: CourseType) => {
     navigation.navigate('CourseContent', {
@@ -142,6 +151,29 @@ export default function CoursesScreen({ navigation }: Props) {
           Minhas Trilhas
         </Text>
 
+        {/* Barra de Progresso */}
+        <View style={styles.progressContainer}>
+          <View style={styles.progressHeader}>
+            <Text style={styles.progressTitle}>📊 Progresso Geral</Text>
+            <Text style={styles.progressText}>
+              {cursosConcluidos} de {TOTAL_CURSOS} cursos concluídos
+            </Text>
+          </View>
+          
+          <View style={styles.progressBar}>
+            <View 
+              style={[
+                styles.progressFill,
+                { width: `${porcentagemConcluida}%` }
+              ]} 
+            />
+          </View>
+          
+          <Text style={styles.progressPercentage}>
+            {Math.round(porcentagemConcluida)}% completo
+          </Text>
+        </View>
+
         {/* Cursos do usuário - AGORA CLICÁVEIS */}
         {Object.keys(cursos).length === 0 ? (
           <Text style={{ textAlign: 'center', marginVertical: 20, color: COLORS.GRAY_400 }}>
@@ -160,10 +192,12 @@ export default function CoursesScreen({ navigation }: Props) {
             >
               <Text style={styles.cursoArea}>{areaNomes[curso.area]}</Text>
               <Text style={styles.cursoNivel}>{nivelNomes[curso.nivel]}</Text>
-              <Text style={styles.cursoStatus}>
+              <Text style={[
+                styles.cursoStatus,
+                curso.concluido && styles.cursoStatusConcluido
+              ]}>
                 {curso.concluido ? '✅ Concluído' : '🔄 Em andamento'}
               </Text>
-              
             </TouchableOpacity>
           ))
         )}
@@ -261,6 +295,57 @@ export default function CoursesScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
+  // NOVOS ESTILOS PARA BARRA DE PROGRESSO
+  progressContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 20,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  progressTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: COLORS.TEXT_PRIMARY,
+  },
+  progressText: {
+    fontSize: 14,
+    color: COLORS.GRAY_600,
+    fontWeight: '500',
+  },
+  progressBar: {
+    height: 12,
+    backgroundColor: COLORS.GRAY_200,
+    borderRadius: 6,
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: COLORS.PRIMARY,
+    borderRadius: 6,
+  },
+  progressPercentage: {
+    fontSize: 14,
+    color: COLORS.GRAY_600,
+    textAlign: 'center',
+    fontWeight: '500',
+  },
+  cursoStatusConcluido: {
+    color: '#059669',
+    fontWeight: 'bold',
+  },
+  // ESTILOS EXISTENTES (mantidos iguais)
   cursoCard: {
     padding: 15,
     borderRadius: 10,
@@ -280,12 +365,6 @@ const styles = StyleSheet.create({
   cursoStatus: {
     fontSize: 12,
     color: COLORS.GRAY_500,
-  },
-  cursoClique: {
-    fontSize: 11,
-    color: COLORS.GRAY_500,
-    fontStyle: 'italic',
-    marginTop: 5,
   },
   botaoFlutuante: {
     position: 'absolute',
