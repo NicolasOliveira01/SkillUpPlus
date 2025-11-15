@@ -122,22 +122,6 @@ Autoavaliação do usuário na área escolhida:
 4. **Persistência** no Realtime Database (database().ref(`/users/${userId}`).set)
 5. **Redirecionamento** para tela de Login após sucesso
 
-```bash
-await database().ref(`/users/${userId}`).set({
-        nome,
-        email,
-        criadoEm: new Date().toISOString(),
-        Courses: {
-          Course1: {
-            area: areaInteresse,
-            nivel: nivelArea,
-            cor: areaColors[areaInteresse] || '#666666',
-            concluido: false,
-          }
-        }
-      });
-```
-
 #### Como os dados são armazenados no RealTime Database
 
 <img src="./assets/prints/database_apos_create_account.jpg" height="300" alt="Tela de Login">
@@ -158,12 +142,36 @@ await database().ref(`/users/${userId}`).set({
 #### Cursos:
 
  - Cards com a **área de interesse** e **nível** que o usuário 
- - Cada card possui os **Principais Tópicos**, **Exemplos Práticos** e **Questão de Verificação**
  - Cada Card possui o status **concluido** que é armazenado no realTime Database e só é atualizado quando o usuário acerta a questão 
 
 <img src="./assets/prints/Courses_escolhidos.jpg" height="250" alt="Tela de Login">
 
+#### Botão para adicionar mais cursos:
+
+ - Usuário pode adicionar novos cursos sem ser os que já foram escolhidos
+ - Ao escolher um novo curso a tela adiciona um novo card
+
+<img src="./assets/prints/botao_adicionar_cursos.jpg" height="250" alt="Tela de Login">
+
+--- 
+
 ### CourseContentScreen:
+
+ - O conteúdo de cada curso é gerado pelo **Google Gemini** feito atráves de integração usando **axios**
+ 
+#### Principais Tópicos:
+
+<img src="./assets/prints/principais_topicos.jpg" height="400" alt="Tela de Login">
+
+#### Exemplos Práticos:
+
+<img src="./assets/prints/exemplos_praticos.jpg" height="400" alt="Tela de Login">
+
+#### Questão:
+
+<img src="./assets/prints/errou_questao.jpg" height="400" alt="Tela de Login">
+
+<img src="./assets/prints/acertou_questao.jpg" height="400" alt="Tela de Login">
 
 ## Alerts do projeto:
 
