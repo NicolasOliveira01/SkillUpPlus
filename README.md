@@ -1,5 +1,9 @@
 # Global Solution FIAP 2025.2 - Mobile Development & IoT
 
+## Link do projeto no Youtube
+
+https://www.youtube.com/watch?v=pvj_1LqrlOE
+
 ## Integrantes da Equipe
 
 | Nome | RM |
@@ -8,14 +12,7 @@
 | Mateus Iago Sousa | 550270 |
 | Nicolas Oliveira  | 98939  |
 
-## 🚀 Como Executar o Projeto
-
-### Pré-requisitos
-- Node.js (versão 18 ou superior)
-- npm ou yarn
-- Expo CLI instalado globalmente
-
-### Como rodar o projeto
+### 🚀 Como rodar o projeto
 
 1. Clone o repositório:
 
