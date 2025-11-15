@@ -1,15 +1,21 @@
-// AppNavigation.tsx
+// navigation/AppNavigation.tsx
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import CoursesScreen from '../screens/CoursesScreen';
+import CourseContentScreen from '../screens/CourseContentScreen'; // ← NOVA TELA
 
 export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Courses: undefined;
+  CourseContent: { // ← NOVA ROTA
+    courseId: string;
+    area: string;
+    nivel: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -43,6 +49,13 @@ export default function AppNavigator() {
         name="Courses" 
         component={CoursesScreen}
         options={{ title: 'Minhas Trilhas' }}
+      />
+      <Stack.Screen 
+        name="CourseContent" 
+        component={CourseContentScreen}
+        options={({ route }) => ({ 
+          title: `Curso - ${route.params.area}` 
+        })}
       />
     </Stack.Navigator>
   );

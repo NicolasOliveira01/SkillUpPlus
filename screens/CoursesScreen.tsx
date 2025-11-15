@@ -67,6 +67,14 @@ export default function CoursesScreen({ navigation }: Props) {
     'avancado': '💎 Avançado'
   };
 
+  const navegarParaConteudoCurso = (courseId: string, curso: CourseType) => {
+    navigation.navigate('CourseContent', {
+      courseId: courseId,
+      area: curso.area,
+      nivel: curso.nivel
+    });
+  };
+
   // Buscar cursos do usuário
   useEffect(() => {
     const userId = auth().currentUser?.uid;
@@ -78,25 +86,6 @@ export default function CoursesScreen({ navigation }: Props) {
       });
     }
   }, []);
-
-  const carregarConteudoIA = async () => {
-    setCarregando(true);
-    try {
-      // Usar o primeiro curso como base para a IA
-      const primeiroCurso = Object.values(cursos)[0];
-      if (primeiroCurso) {
-        const resultado = await generateLearningContent(
-          primeiroCurso.area, 
-          primeiroCurso.nivel
-        );
-        setConteudo(resultado);
-      }
-    } catch (error) {
-      console.log('Erro ao carregar conteúdo:', error);
-    } finally {
-      setCarregando(false);
-    }
-  };
 
   const adicionarNovoCurso = async () => {
     if (!areaSelecionada || !nivelSelecionado) {
@@ -155,26 +144,29 @@ export default function CoursesScreen({ navigation }: Props) {
           Minhas Trilhas
         </Text>
 
-        {/* Cursos do usuário */}
+        {/* Cursos do usuário - AGORA CLICÁVEIS */}
         {Object.keys(cursos).length === 0 ? (
           <Text style={{ textAlign: 'center', marginVertical: 20, color: COLORS.GRAY_400 }}>
             Nenhum curso adicionado ainda
           </Text>
         ) : (
           Object.entries(cursos).map(([courseId, curso]) => (
-            <View 
+            <TouchableOpacity
               key={courseId}
               style={[
                 styles.cursoCard,
                 { backgroundColor: curso.cor + '20', borderLeftColor: curso.cor }
               ]}
+              onPress={() => navegarParaConteudoCurso(courseId, curso)}
+              activeOpacity={0.7}
             >
               <Text style={styles.cursoArea}>{areaNomes[curso.area]}</Text>
               <Text style={styles.cursoNivel}>{nivelNomes[curso.nivel]}</Text>
               <Text style={styles.cursoStatus}>
                 {curso.concluido ? '✅ Concluído' : '🔄 Em andamento'}
               </Text>
-            </View>
+              
+            </TouchableOpacity>
           ))
         )}
 
@@ -196,12 +188,6 @@ export default function CoursesScreen({ navigation }: Props) {
           </View>
         )}
 
-        <TouchableOpacity 
-          style={styles.botaoGerar}
-          onPress={carregarConteudoIA}
-        >
-          <Text style={styles.botaoTexto}>🔄 Gerar Novo Conteúdo</Text>
-        </TouchableOpacity>
       </ScrollView>
 
       {/* Botão Flutuante para Adicionar Curso */}
@@ -315,17 +301,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: COLORS.GRAY_500,
   },
-  botaoGerar: {
-    backgroundColor: '#2563EB',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 20,
-  },
-  botaoTexto: {
-    color: 'white',
-    fontWeight: 'bold',
+  cursoClique: {
+    fontSize: 11,
+    color: COLORS.GRAY_500,
+    fontStyle: 'italic',
+    marginTop: 5,
   },
   botaoFlutuante: {
     position: 'absolute',
