@@ -35,11 +35,10 @@ export const generateLearningContent = async (area: string, nivel: string) => {
     const cleanJson = text.replace(/```json|```/g, '').trim();
     const parsedContent = JSON.parse(cleanJson);
     
-    // Validação básica
-    if (!parsedContent.roadmap) {
+    // ✅ Atualizar a validação para o novo formato
+    if (!parsedContent.conteudo || !parsedContent.questao) {
       throw new Error('Estrutura incompleta na resposta da IA');
     }
-    
     return parsedContent;
     
   } catch (error) {
@@ -48,15 +47,31 @@ export const generateLearningContent = async (area: string, nivel: string) => {
   }
 };
 
-// Fallback mantido
+// Fallback atualizado para o novo formato
 const getExampleContent = (area: string, nivel: string) => {
   return {
-    roadmap: [
-      `1. Aprender fundamentos de ${area}`,
-      `2. Praticar conceitos básicos como ${nivel}`,
-      "3. Desenvolver projeto simples",
-      "4. Estudar tópicos intermediários", 
-      "5. Buscar certificações ou projetos avançados"
-    ]
+    conteudo: {
+      titulo: `Introdução a ${area} - Nível ${nivel}`,
+      topicos: [
+        `Fundamentos básicos de ${area}`,
+        `Conceitos essenciais para nível ${nivel}`,
+        `Aplicações práticas no dia a dia`
+      ],
+      exemplos: [
+        `Exemplo prático de ${area} em ação`,
+        `Caso real de aplicação de ${area}`
+      ]
+    },
+    questao: {
+      pergunta: `Qual é o conceito principal de ${area}?`,
+      alternativas: {
+        "A": "Uma tecnologia avançada complexa",
+        "B": "Um conjunto de técnicas e métodos",
+        "C": "Um software específico",
+        "D": "Um tipo de hardware",
+        "E": "Uma linguagem de programação"
+      },
+      correta: "B"
+    }
   };
 };

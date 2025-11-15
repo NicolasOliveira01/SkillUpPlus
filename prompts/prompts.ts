@@ -4,31 +4,50 @@ export type NivelKey = 'iniciante' | 'intermediario' | 'avancado';
 export const prompts: Record<AreaKey, Record<NivelKey, string>> = {
     ia: {
         iniciante: `
-            Crie um roadmap para INICIANTES em IA/Machine Learning:
+            Crie um conteúdo educativo para INICIANTES em IA/Machine Learning seguindo EXATAMENTE este formato:
 
-            CONCEITOS FUNDAMENTAIS:
-            - O que é Machine Learning e como funciona
-            - Diferença entre IA, ML e Deep Learning
-            - Introdução a redes neurais simples
-            - Exemplos práticos de IA no dia a dia
-            - Como o ChatGPT e modelos de linguagem funcionam
+            CONTEÚDO PRINCIPAL:
+            - Explique o que é Inteligência Artificial de forma simples
+            - Diferencie IA, Machine Learning e Deep Learning
+            - Mostre exemplos práticos no dia a dia
+            - Introduza conceitos básicos de como modelos aprendem
 
-            FERRAMENTAS: Python básico, Google Colab, ChatGPT, Jupyter Notebook
-            PRÉ-REQUISITOS: Lógica de programação, matemática do ensino médio
-            PROJETOS: Classificador de imagens simples, chatbot básico com API
+            QUESTÃO DE VERIFICAÇÃO:
+            Crie UMA questão objetiva para testar o entendimento do conteúdo.
+            A questão deve ter:
+            - 5 alternativas (A, B, C, D, E)
+            - Apenas UMA alternativa correta
+            - Dificuldade adequada para iniciantes
+            - Foco em conceitos fundamentais apresentados
 
             FORMATO JSON EXATO:
             {
-                "roadmap": [
-                    "1. Aprender Python básico e bibliotecas como Pandas/NumPy",
-                    "2. Entender conceitos de ML: treinamento, teste, validação",
-                    "3. Praticar com datasets simples (Iris, MNIST) no Google Colab",
-                    "4. Criar primeiro modelo de classificação com Scikit-learn",
-                    "5. Desenvolver chatbot simples usando APIs como OpenAI"
-                ]
+                "conteudo": {
+                    "titulo": "Título do conteúdo para iniciantes em IA",
+                    "topicos": [
+                        "Texto explicativo do tópico 1",
+                        "Texto explicativo do tópico 2", 
+                        "Texto explicativo do tópico 3"
+                    ],
+                    "exemplos": [
+                        "Exemplo prático 1",
+                        "Exemplo prático 2"
+                    ]
+                },
+                "questao": {
+                    "pergunta": "Texto da pergunta sobre conceitos de IA",
+                    "alternativas": {
+                        "A": "Texto da alternativa A",
+                        "B": "Texto da alternativa B",
+                        "C": "Texto da alternativa C", 
+                        "D": "Texto da alternativa D",
+                        "E": "Texto da alternativa E"
+                    },
+                    "correta": "A"
+                }
             }
 
-            Retorne APENAS o JSON, sem markdown, sem texto adicional.
+            Retorne APENAS o JSON válido, sem markdown, sem texto adicional.
         `,      
         intermediario: `
             Crie um roadmap para nível INTERMEDIÁRIO em IA/Machine Learning:

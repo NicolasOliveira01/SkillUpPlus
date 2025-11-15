@@ -34,8 +34,6 @@ type CourseType = {
 };
 
 export default function CoursesScreen({ navigation }: Props) {
-  const [conteudo, setConteudo] = useState<any>(null);
-  const [carregando, setCarregando] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [cursos, setCursos] = useState<{[key: string]: CourseType}>({});
   const [areaSelecionada, setAreaSelecionada] = useState('');
@@ -168,24 +166,6 @@ export default function CoursesScreen({ navigation }: Props) {
               
             </TouchableOpacity>
           ))
-        )}
-
-        {carregando && (
-          <View style={{ alignItems: 'center', marginVertical: 20 }}>
-            <ActivityIndicator size="large" />
-            <Text style={{ marginTop: 10 }}>IA gerando conteúdo personalizado... 🤖</Text>
-          </View>
-        )}
-
-        {conteudo && (
-          <View>
-            <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>
-              🎯 Roadmap:
-            </Text>
-            {/* {conteudo.roadmap.map((passo: string, index: number) => (
-              <Text key={index} style={{ marginBottom: 8, lineHeight: 20 }}>• {passo}</Text>
-            ))} */}
-          </View>
         )}
 
       </ScrollView>
