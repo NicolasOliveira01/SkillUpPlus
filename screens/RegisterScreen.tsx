@@ -149,12 +149,12 @@ export default function RegisterScreen({ navigation }: Props) {
             style={styles.pickerText}
           >
             <Picker.Item label="Selecione sua área de interesse" value="" />
-            <Picker.Item label="🤖 IA (Machine Learning, ChatGPT)" value="IA" />
-            <Picker.Item label="🌱 Sustentabilidade (ESG, Energia Renovável)" value="Sustentabilidade" />
-            <Picker.Item label="💬 Soft Skills (Comunicação, Liderança)" value="Soft Skills" />
-            <Picker.Item label="📊 Gestão (Gestão de Projetos, Liderança)" value="Gestao" />
-            <Picker.Item label="📈 Análise de Dados (Data Science, BI)" value="Analise de Dados" />
-            <Picker.Item label="💻 Tecnologia da Informação" value="TI" />
+            <Picker.Item label="🤖 IA (Machine Learning, ChatGPT)" value="ia" />
+            <Picker.Item label="🌱 Sustentabilidade (ESG, Energia Renovável)" value="sustentabilidade" />
+            <Picker.Item label="💬 Soft Skills (Comunicação, Liderança)" value="softSkills" />
+            <Picker.Item label="📊 Gestão (Gestão de Projetos, Liderança)" value="gestao" />
+            <Picker.Item label="📈 Análise de Dados (Data Science, BI)" value="analiseDados" />
+            <Picker.Item label="💻 Tecnologia da Informação" value="ti" />
           </Picker>
         </View>
       </View>
@@ -177,6 +177,8 @@ export default function RegisterScreen({ navigation }: Props) {
           </Picker>
         </View>
       </View>
+
+      
 
       {/* Botão Cadastrar */}
       <TouchableOpacity

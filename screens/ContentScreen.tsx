@@ -1,12 +1,17 @@
+// ContentScreen.tsx - COM SCROLL
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  ActivityIndicator, 
+  ScrollView  // ✅ Adicione esta importação
+} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigation';
 
-// 1. Importar a função do serviço
 import { generateLearningContent } from '../services/aiService';
 
-// 2. Definir os tipos TypeScript
 type ContentScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Content'
@@ -29,14 +34,12 @@ export default function ContentScreen({ route }: Props) {
   const [conteudo, setConteudo] = useState<any>(null);
   const [carregando, setCarregando] = useState(false);
 
-  // 3. Pegar dados do usuário do RegisterScreen com fallback
   const userData = route.params?.userData || {
     areaInteresse: 'IA',
     nivelArea: 'iniciante',
     nome: 'Usuário'
   };
 
-  // 4. Função que chama a IA
   const carregarConteudoIA = async () => {
     setCarregando(true);
     try {
@@ -52,13 +55,13 @@ export default function ContentScreen({ route }: Props) {
     }
   };
 
-  // 5. Carregar conteúdo quando a tela abrir
   useEffect(() => {
     carregarConteudoIA();
   }, []);
 
   return (
-    <View style={{ padding: 20 }}>
+    // ✅ ENVOLVA TUDO EM SCROLLVIEW
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20 }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
         Conteúdo para {userData.areaInteresse} - {userData.nivelArea}
       </Text>
@@ -76,18 +79,8 @@ export default function ContentScreen({ route }: Props) {
             🎯 Roadmap:
           </Text>
           {conteudo.roadmap.map((passo: string, index: number) => (
-            <Text key={index} style={{ marginBottom: 5 }}>• {passo}</Text>
+            <Text key={index} style={{ marginBottom: 8, lineHeight: 20 }}>• {passo}</Text>
           ))}
-          
-          <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 20, marginBottom: 5 }}>
-            📺 Vídeo Recomendado:
-          </Text>
-          <Text>{conteudo.videoTitle}</Text>
-          
-          <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 20, marginBottom: 5 }}>
-            ❓ Quiz:
-          </Text>
-          <Text>{conteudo.quiz.length} perguntas para testar seu conhecimento</Text>
         </View>
       )}
 
@@ -97,12 +90,13 @@ export default function ContentScreen({ route }: Props) {
           padding: 15, 
           borderRadius: 10, 
           alignItems: 'center',
-          marginTop: 30 
+          marginTop: 30,
+          marginBottom: 20 // ✅ Adicione margem inferior para não cortar
         }}
         onPress={carregarConteudoIA}
       >
         <Text style={{ color: 'white', fontWeight: 'bold' }}>🔄 Gerar Novo Conteúdo</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView> // ✅ FECHE O SCROLLVIEW
   );
 }

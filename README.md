@@ -47,13 +47,16 @@ SKILLUPPLUS2030/
 ├── navigation/
 │   └── AppNavigation.tsx
 │
+├── prompts/
+│    └── prompts.ts
+│
 ├── screens/
 │   ├── ContentScreen.tsx
 │   ├── LoginScreen.tsx
 │   └── RegisterScreen.tsx
 │
 ├── services/
-│    └──
+│    └── aiService.ts
 │
 ├── App.tsx
 ├── google-service.json
@@ -129,6 +132,8 @@ await database().ref(`/users/${userId}`).set({
 ```
 
 ## ContentScreen:
+
+
 
 ## Alerts do projeto:
 
