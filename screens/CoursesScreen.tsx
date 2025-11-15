@@ -143,7 +143,6 @@ export default function CoursesScreen({ navigation }: Props) {
           Minhas Trilhas
         </Text>
 
-        {/* Barra de Progresso */}
         <View style={styles.progressContainer}>
           <View style={styles.progressHeader}>
             <Text style={styles.progressTitle}>📊 Progresso Geral</Text>
@@ -166,7 +165,6 @@ export default function CoursesScreen({ navigation }: Props) {
           </Text>
         </View>
 
-        {/* Cursos do usuário - AGORA CLICÁVEIS */}
         {Object.keys(cursos).length === 0 ? (
           <Text style={{ textAlign: 'center', marginVertical: 20, color: COLORS.GRAY_400 }}>
             Nenhum curso adicionado ainda

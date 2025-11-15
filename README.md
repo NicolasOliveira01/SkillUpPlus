@@ -140,7 +140,7 @@ await database().ref(`/users/${userId}`).set({
 
 #### Como os dados são armazenados no RealTime Database
 
-<img src="./assets/prints/database_apos_create_account.jpg" height="250" alt="Tela de Login">
+<img src="./assets/prints/database_apos_create_account.jpg" height="300" alt="Tela de Login">
 
 --- 
 
@@ -156,6 +156,10 @@ await database().ref(`/users/${userId}`).set({
 <img src="./assets/prints/barra_conclusao_cursos.jpg" alt="Tela de Login">
 
 #### Cursos:
+
+ - Cards com a **área de interesse** e **nível** que o usuário 
+ - Cada card possui os **Principais Tópicos**, **Exemplos Práticos** e **Questão de Verificação**
+ - Cada Card possui o status **concluido** que é armazenado no realTime Database e só é atualizado quando o usuário acerta a questão 
 
 <img src="./assets/prints/Courses_escolhidos.jpg" height="250" alt="Tela de Login">
 
