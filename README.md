@@ -138,7 +138,9 @@ await database().ref(`/users/${userId}`).set({
       });
 ```
 
-<img src="./assets/prints/database_apos_create_account.jpg" alt="Tela de Login">
+#### Como os dados são armazenados no RealTime Database
+
+<img src="./assets/prints/database_apos_create_account.jpg" height="250" alt="Tela de Login">
 
 --- 
 
@@ -152,6 +154,10 @@ await database().ref(`/users/${userId}`).set({
  - Usuário consegue **monitor o seu progresso**
 
 <img src="./assets/prints/barra_conclusao_cursos.jpg" alt="Tela de Login">
+
+#### Cursos:
+
+<img src="./assets/prints/Courses_escolhidos.jpg" height="250" alt="Tela de Login">
 
 ### CourseContentScreen:
 
